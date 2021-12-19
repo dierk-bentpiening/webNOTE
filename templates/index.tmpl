@@ -1,0 +1,93 @@
+<html>
+<head>
+	<style type="text/css" media="screen">
+    <!-- 
+        @import url("/assets/styles/index.css");
+    -->
+	</style>
+	<title> {{ .title }} </title>
+</head>
+<body>
+
+<div class="waveWrapper waveAnimation">
+  <div class="waveWrapperInner bgTop">
+  	<center>
+  	<div class="card-container">
+	<span class="pro">v{{ .version }}</span>
+	<img class="round" src="/assets/img/logo.png" width="400" height="400" alt="user" />
+	<h2>WebNote API Server</h2>
+	<h4>© {{ .year }} Dierk-Bent Piening</h4>
+	This is Free and Open Source Software, you can Redistribute and modify under the Terms of the MIT License</p>
+	<div class="buttons">
+		<button class="primary">
+			Settings
+		</button>
+		<button class="primary">
+			Logs
+		</button>
+		<button id="infobutton" class="primary">
+			Info
+		</button>
+	</div>
+	<div class="skills">
+		<h3>MESSAGES</h3>
+		<ul>
+			<li> Server Rebooted </li>
+			<li> <p id="time"> </p>
+		</ul>
+	</div>
+
+	 <div id="modalOne" class="modal">
+      <div class="modal-content">
+        <div class="contact-form">
+          
+          <form action="/">
+          	<a id="close" class="close">&times;</a>
+            <img src="/assets/img/logo.png"  class="logoimg" width="170" height="170" align="left" class="logotext" alt="LOGO" class="round">
+
+           <h1 class="home-title" align="left">
+					  <span> webNOTE API Server</span>
+					</h1>
+					<h4 class="home-title" align="left">
+						<span> Version v{{ .version }} </span>
+					
+					 <span> Copyright (C) 2021 Dierk-Bent Piening</span>
+					</h4>
+
+					<h5 class="home-title" align="left">
+						<span>This work is licensed under the terms of the MIT license.  
+For a copy, see https://opensource.org/licenses/MIT. </span>
+</h5>
+				
+
+            
+          </form>
+        </div>
+      </div>
+    </div>
+</center>
+    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+  </div>
+
+  <div class="waveWrapperInner bgMiddle">
+
+    <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')">
+    	
+    </div>
+  </div>
+  <div class="waveWrapperInner bgBottom">
+    <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+  </div>
+</div>
+
+
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
+	<script src="/assets/jssrc/index.js" type="text/javascript"></script>
+</body>
+</html>
+
+
+
+
+
+
