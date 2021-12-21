@@ -28,3 +28,13 @@ func LogInfo(logtext string) {
 	Init()
 	InfoLogger.Println(logtext)
 }
+
+func LogError(logtext string) {
+	Init()
+	ErrorLogger.Println(logtext)
+}
+
+func LogWarning(logtext string) {
+	Init()
+	WarningLogger.Println(logtext)
+}

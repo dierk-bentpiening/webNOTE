@@ -2,31 +2,38 @@ package main
 
 import "github.com/gin-gonic/gin"
 import (
-	"net/http"
-	"gorm.io/gorm"
-	"gorm.io/driver/sqlite"
-	InternalLibs "WebNote/libs"
 	BaseAPI "WebNote/baseapifunc"
 	DataModel "WebNote/datamodel"
+	InternalLibs "WebNote/libs"
 	NoteFunc "WebNote/notefunc"
-
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
+	"log"
+	"net/http"
 )
+
 var db, err = gorm.Open(sqlite.Open("notes.db"), &gorm.Config{})
 
 var id string
 
 func getIndex(c *gin.Context) {
-
+	InternalLibs.LogInfo("/index called")
 	c.HTML(http.StatusOK, "index.tmpl", gin.H{"title": "WebNote", "version": "0.0.1-A", "year": "2021"})
 }
 func main() {
-	InternalLibs.LogInfo("Starting Application")	
-  	if err != nil {
-    	panic("failed to connect database")
-  	}
+	InternalLibs.LogInfo("Starting Application")
+	if err != nil {
+		panic("failed to connect database")
+	}
 
-  	db.AutoMigrate(&DataModel.Note{})
-  	db.AutoMigrate(&DataModel.Category{})
+	var err = db.AutoMigrate(
+		&DataModel.Note{},
+		&DataModel.Category{},
+	)
+	if err != nil {
+		InternalLibs.LogError(err.Error())
+		log.Fatal(err)
+	}
 	InternalLibs.LogInfo("Migrated DataModel ")
 	InternalLibs.WelcomeMessage()
 	router := gin.Default()

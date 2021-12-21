@@ -9,6 +9,7 @@ import (
 	"github.com/google/uuid"
 	DataModel "WebNote/datamodel"
 	Libs "WebNote/libs"
+	Responses "WebNote/responses"
 
 )
 var db, err = gorm.Open(sqlite.Open("notes.db"), &gorm.Config{})
@@ -69,7 +70,7 @@ func PostNote(c *gin.Context) {
 		CategoryID: note.CategoryID,
 	})
 	
-	c.IndentedJSON(http.StatusOK, DataModel.CreatedSuccessFullyJSON{
+	c.IndentedJSON(http.StatusOK, Responses.EntityCreatedSuccessFullyJSON{
 		ID: id,
 		Message: "Note Created successfully!",
 		Title: note.Title,
