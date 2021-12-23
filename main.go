@@ -3,16 +3,14 @@ package main
 import "github.com/gin-gonic/gin"
 import (
 	BaseAPI "WebNote/baseapifunc"
+	CategoryFunc "WebNote/categoryfunc"
 	DataModel "WebNote/datamodel"
+	DatabaseHandler "WebNote/db"
 	InternalLibs "WebNote/libs"
 	NoteFunc "WebNote/notefunc"
-	"gorm.io/driver/sqlite"
-	"gorm.io/gorm"
 	"log"
 	"net/http"
 )
-
-var db, err = gorm.Open(sqlite.Open("notes.db"), &gorm.Config{})
 
 var id string
 
@@ -22,11 +20,7 @@ func getIndex(c *gin.Context) {
 }
 func main() {
 	InternalLibs.LogInfo("Starting Application")
-	if err != nil {
-		panic("failed to connect database")
-	}
-
-	var err = db.AutoMigrate(
+	var err = DatabaseHandler.DB.AutoMigrate(
 		&DataModel.Note{},
 		&DataModel.Category{},
 	)
@@ -44,5 +38,7 @@ func main() {
 	router.POST("/note", NoteFunc.PostNote)
 	router.GET("/note", NoteFunc.GetNotes)
 	router.GET("/note/:id", NoteFunc.GetNote)
+	router.GET("/category", CategoryFunc.GetCategorys)
+	router.POST("/category", CategoryFunc.PostCategory)
 	router.Run("localhost:3535")
 }
