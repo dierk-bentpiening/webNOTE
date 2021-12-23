@@ -12,6 +12,7 @@ type Note struct {
 	Author string
 	DateTime string
 	CategoryID string
+	CategoryName string
 }
 
 type NoteJSON struct {
@@ -19,7 +20,8 @@ type NoteJSON struct {
 	Title    	string `json:"title"`
 	Text 	 	string `json:"text"`
 	Author   	string `json:"author"`
-	DateTime 	string `json:"DateTime"`
+	DateTime 	string `json:"DatTime"`
 	CategoryID  string `json:"categoryid"`
+	CategoryName string `json:"categoryname"`
 
 }

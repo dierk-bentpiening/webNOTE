@@ -5,6 +5,7 @@ import (
 	DataModel "WebNote/datamodel"
 	DatabaseHandler "WebNote/db"
 	Responses "WebNote/responses"
+	InternalLibs "WebNote/libs"
 	"github.com/google/uuid"
 	"net/http"
 	"time"
@@ -32,6 +33,7 @@ func PostCategory(c *gin.Context) {
 			Message:  "Category created successfully",
 			DateTime: time.Now().String(),
 		})
+		InternalLibs.LogInfo("Created Record for Entity with ID " + createCategoryJSON.ID + " and the Name " + createCategoryJSON.Name )
 
 	} else {
 		c.IndentedJSON(http.StatusConflict, Responses.EntityAllreadyExistJSON{
