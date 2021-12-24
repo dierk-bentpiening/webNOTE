@@ -30,7 +30,9 @@ func main() {
 	}
 	InternalLibs.LogInfo("Migrated DataModel ")
 	InternalLibs.WelcomeMessage()
+
 	router := gin.Default()
+	InternalLibs.LogInfo("Started Router import\nImport all routes")
 	router.LoadHTMLGlob("templates/*")
 	router.Static("/assets", "./assets")
 	router.GET("/", getIndex)

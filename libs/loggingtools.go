@@ -4,7 +4,8 @@ import (
 	"os"
 	"time"
 	"log"
-)
+	"fmt"
+	)
 
 var (
     WarningLogger *log.Logger
@@ -14,6 +15,15 @@ var (
 
 
 func Init() {
+
+	if _, err := os.Stat("Logs"); os.IsNotExist(err) {
+		err := os.Mkdir("Logs", 0755)
+		if err != nil {
+			fmt.Println("Fatal Error: Could not create Logs Folder, Server Terminating...\n Exception" + err.Error())
+		 } else {
+		 	fmt.Print("Successfully created Logs Folder...")
+		 } 
+	}
 	var acdate string = time.Now().Format("01-02-2006")
 	var file, err = os.OpenFile("Logs/wbas_log" + acdate + ".log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
